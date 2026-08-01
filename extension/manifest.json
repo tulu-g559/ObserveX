@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "ObserveX \u2014 See Your Day Clearly",
+  "name": "ObserveX",
   "version": "0.1.0",
   "description": "AI-powered browser activity intelligence. Captures, understands, and organizes your day.",
   "icons": {
