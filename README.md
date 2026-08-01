@@ -8,8 +8,6 @@
 
 **Capture browser activity · Understand it with vision AI · Visualize your day**
 
-
-
 <!-- TODO: Replace with real product screenshot once UI is finalized -->
 
 [![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
@@ -27,40 +25,10 @@
 
 <div align="center">
 
-**Chrome Extension → FastAPI → Redis/Celery → Gemini Vision → PostgreSQL → React Dashboard**
-
+**Chrome Extension → FastAPI → Redis/Celery → Vision API + OCR→ PostgreSQL → Dashboard**
 *Capture is instant. AI understanding happens async, in the background.*
 
 </div>
-
----
-
-## 📖 Table of Contents
-
-- [About](#about)
-- [Snapshots](#snapshots)
-- [Features](#features)
-- [Architecture](#architecture)
-- [Request Flow](#request-flow)
-- [Technology Stack](#technology-stack)
-- [Project Structure](#project-structure)
-- [Getting Started](#getting-started)
-  - [Prerequisites](#prerequisites)
-  - [Environment Variables](#environment-variables)
-  - [Docker Setup](#docker-setup)
-  - [Manual Setup](#manual-setup)
-- [Running the Stack](#running-the-stack)
-- [Database Migrations](#database-migrations)
-- [API Reference](#api-reference)
-- [Chrome Extension Workflow](#chrome-extension-workflow)
-- [AI Pipeline](#ai-pipeline)
-- [Redis Queue Flow](#redis-queue-flow)
-- [Celery Worker Flow](#celery-worker-flow)
-- [Architecture Decisions](#architecture-decisions)
-- [Scalability](#scalability)
-- [Configuration](#configuration)
-- [Development Workflow](#development-workflow)
-- [Example Requests](#example-requests)
 
 ---
 
@@ -87,16 +55,18 @@ The architecture is **event-driven and asynchronous**: the extension only captur
 <div align="center">
 
 | Dashboard | Timeline |
-|---|---|
-| _screenshot pending_ | _screenshot pending_ |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/247e4a90-407e-4a0d-aef4-75eeb2d8b3c9" alt="Dashboard" width="420" /> | <img src="https://github.com/user-attachments/assets/a6c9a4da-f401-45e9-8b28-c0f319e06a5c" alt="Timeline" width="420" /> |
 
-| Session Detail | Search |
-|---|---|
-| _screenshot pending_ | _screenshot pending_ |
+| Stats | Extension |
+| :---: | :---: |
+| <img src="https://github.com/user-attachments/assets/10a6767a-75c6-40d8-b004-063e1dec5b2a" alt="Stats" width="420" /> | <img src="https://github.com/user-attachments/assets/236097f3-8e24-4092-b965-fab6efaa4bb5" alt="Extension" width="420" /> |
+
+| Container config |
+| :---: |
+| <img src="https://github.com/user-attachments/assets/30198719-91ee-456e-9b65-cca5d7584291" alt="Search" width="850" /> |
 
 </div>
-
-> Drop screenshots into a `docs/screenshots/` folder and reference them here, e.g. `![Dashboard](docs/screenshots/dashboard.png)`.
 
 ---
 
