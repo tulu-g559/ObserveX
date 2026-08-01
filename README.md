@@ -1,14 +1,11 @@
 <div align="center">
 
-# 👁️ ObserveX
+# ObserveX: Real-time Visual AI Browser Agent
+**Capture browser activity · Understand it with vision AI · Visualize your day**
 
-### Real-time Visual AI Browser Agent
 
-**Capture browser activity. Understand it with vision AI. Visualize your day.**
 
-![Hero Image](https://via.placeholder.com/1200x400/0f172a/ffffff?text=ObserveX+%E2%80%94+Real-time+Visual+AI+Browser+Agent)
-
-<!-- TODO: Add real product screenshots -->
+<!-- TODO: Replace with real product screenshot once UI is finalized -->
 
 [![Python](https://img.shields.io/badge/Python-3.12-3776AB?logo=python&logoColor=white)](https://www.python.org/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.115-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
@@ -21,11 +18,22 @@
 
 </div>
 
+<br>
+
+<div align="center">
+
+**Chrome Extension → FastAPI → Redis/Celery → Gemini Vision → PostgreSQL → React Dashboard**
+
+*Capture is instant. AI understanding happens async, in the background.*
+
+</div>
+
 ---
 
 ## 📖 Table of Contents
 
 - [About](#about)
+- [Snapshots](#snapshots)
 - [Features](#features)
 - [Architecture](#architecture)
 - [Request Flow](#request-flow)
@@ -43,22 +51,15 @@
 - [AI Pipeline](#ai-pipeline)
 - [Redis Queue Flow](#redis-queue-flow)
 - [Celery Worker Flow](#celery-worker-flow)
-- [Logging & Error Handling](#logging--error-handling)
 - [Architecture Decisions](#architecture-decisions)
 - [Scalability](#scalability)
 - [Configuration](#configuration)
 - [Development Workflow](#development-workflow)
-- [Testing](#testing)
 - [Example Requests](#example-requests)
-- [Example Responses](#example-responses)
-- [Roadmap](#roadmap)
-- [Contributing](#contributing)
-- [License](#license)
-- [Acknowledgements](#acknowledgements)
 
 ---
 
-## About
+## ⦿About
 
 **ObserveX** is a visual AI browser agent that runs entirely in your browser and on your own stack:
 
@@ -70,11 +71,31 @@
 
 The architecture is **event-driven and asynchronous**: the extension only captures and uploads; all AI processing happens in background workers.
 
-> ⚠️ **WIP** — this project is under active development. Anything not yet implemented is listed in [Roadmap](#roadmap) instead of being documented as existing.
+> ⚠️ **WIP** — this project is under active development. Anything not yet implemented is listed inline as TODO instead of being documented as existing.
 
 ---
 
-## Features
+## ⦿ Snapshots
+
+<!-- TODO: Replace with actual screenshots from the app -->
+
+<div align="center">
+
+| Dashboard | Timeline |
+|---|---|
+| _screenshot pending_ | _screenshot pending_ |
+
+| Session Detail | Search |
+|---|---|
+| _screenshot pending_ | _screenshot pending_ |
+
+</div>
+
+> Drop screenshots into a `docs/screenshots/` folder and reference them here, e.g. `![Dashboard](docs/screenshots/dashboard.png)`.
+
+---
+
+## ⦿ Features
 
 | Area | Feature |
 |---|---|
@@ -96,7 +117,7 @@ The architecture is **event-driven and asynchronous**: the extension only captur
 
 ---
 
-## Architecture
+## ⦿ Architecture
 
 ### System Overview
 
@@ -185,7 +206,7 @@ flowchart TD
 
 ---
 
-## Technology Stack
+## ⦿ Technology Stack
 
 ### Backend — `server/`
 
@@ -229,7 +250,7 @@ flowchart TD
 
 ---
 
-## Project Structure
+## ⦿ Project Structure
 
 ```
 ObserveX/
@@ -241,8 +262,8 @@ ObserveX/
 │       ├── background/         # service worker: capture, queue, flush, alarms
 │       ├── content/            # content script: forwards click / form_submit
 │       ├── lib/                # apiClient, storageManager, shared types
-│       ├── popup/              # popup UI: enable/disable + queue status
-│       └── options/            # options page: API URL, interval, quality
+│       ├── popup/               # popup UI: enable/disable + queue status
+│       └── options/             # options page: API URL, interval, quality
 ├── server/                     # FastAPI backend
 │   ├── Dockerfile
 │   ├── requirements.txt
@@ -274,7 +295,7 @@ ObserveX/
 
 ---
 
-## Getting Started
+## ⦿ Getting Started
 
 ### Prerequisites
 
@@ -297,7 +318,7 @@ cp server/.env.example server/.env
 | `ENV` | `development` | Runtime environment label |
 | `DATABASE_URL` | `postgresql+psycopg://observex:observex@postgres:5432/observex` | SQLAlchemy connection string (psycopg3 driver) |
 | `REDIS_URL` | `redis://redis:6379/0` | Celery broker + result backend URL |
-| `GEMINI_API_KEY` | *(empty)* | Google AI Studio API key for Gemini Vision |
+| `GEMINI_API_KEY` | *your_gemini_api_key* | Google AI Studio API key for Gemini Vision |
 | `GEMINI_MODEL` | `gemini-3.6-flash` | Gemini model identifier used for vision analysis |
 | `MAX_UPLOAD_MB` | `5` | Maximum accepted screenshot size (MB) |
 | `JWT_SECRET` | `change-me` | **TODO:** reserved for future auth (no auth is enforced yet) |
@@ -415,7 +436,7 @@ Then:
 
 ---
 
-## Database Migrations
+## ⦿ Database Migrations
 
 ```bash
 # create a new revision after model changes
@@ -474,7 +495,7 @@ erDiagram
 
 ---
 
-## API Reference
+## ⦿ API Reference
 
 Base URL: `http://localhost:8000` — interactive docs at `/docs`.
 
@@ -539,7 +560,7 @@ Base URL: `http://localhost:8000` — interactive docs at `/docs`.
 
 ---
 
-## Chrome Extension Workflow
+## ⦿ Chrome Extension Workflow
 
 The extension is intentionally thin: **capture and upload only**. All intelligence lives in the backend.
 
@@ -574,7 +595,7 @@ This makes capture resilient to network hiccups and backend restarts.
 
 ---
 
-## AI Pipeline
+## ⦿ AI Pipeline
 
 Implemented as the `VisionService` facade (`server/app/services/vision_service.py`), used only by the Celery worker:
 
@@ -598,7 +619,7 @@ flowchart LR
 
 ---
 
-## Redis Queue Flow
+## ⦿ Redis Queue Flow
 
 - Redis (`redis://redis:6379/0`) acts as **both** the Celery **broker** (task transport) and **result backend**.
 - The API never performs AI work synchronously — `POST /upload` returns `UploadAck` with `status: "queued"` immediately after `process_screenshot.delay()`.
@@ -606,7 +627,7 @@ flowchart LR
 
 ---
 
-## Celery Worker Flow
+## ⦿ Celery Worker Flow
 
 **Worker config** (`server/app/workers/celery_app.py`):
 
@@ -635,28 +656,7 @@ def process_screenshot(self, activity_id: str, image_path: str) -> dict:
 
 ---
 
-## Logging & Error Handling
-
-**Logging** (`server/app/core/logging.py`):
-
-- Single stdout handler, structured format:
-
-  ```
-  2026-08-01 12:00:00 | INFO | req=a1b2c3d4 | observex.main | ObserveX API starting up (env=development)
-  ```
-
-- Every HTTP request gets a short request id (`ContextVar`), echoed in logs and returned in the `X-Request-ID` response header.
-- Loggers are namespaced: `observex.main`, `observex.worker`, `observex.vision`, `observex.exceptions`.
-
-**Error handling** (`server/app/core/exceptions.py`):
-
-- Domain errors raise `ObserveXError(message, status_code)` → JSON `{ "error": message }` with the proper status (404/413/415).
-- Unhandled exceptions → logged via `logger.exception` and answered with generic `500 {"error": "internal server error"}`.
-- The Celery task logs exceptions before retrying, so failures are always visible in worker logs.
-
----
-
-## Architecture Decisions
+## ⦿ Architecture Decisions
 
 | Decision | Rationale |
 |---|---|
@@ -671,7 +671,7 @@ def process_screenshot(self, activity_id: str, image_path: str) -> dict:
 
 ---
 
-## Scalability
+## ⦿ Scalability
 
 | Lever | How ObserveX supports it |
 |---|---|
@@ -685,7 +685,7 @@ def process_screenshot(self, activity_id: str, image_path: str) -> dict:
 
 ---
 
-## Configuration
+## ⦿ Configuration
 
 | What | Where |
 |---|---|
@@ -697,7 +697,7 @@ def process_screenshot(self, activity_id: str, image_path: str) -> dict:
 
 ---
 
-## Development Workflow
+## ⦿ Development Workflow
 
 ```bash
 # 1. Start infra (Docker)
@@ -719,181 +719,3 @@ cd extension && npm run watch
 ```
 
 ---
-
-## Testing
-
-```bash
-cd server && pytest
-```
-
-Current coverage (`server/tests/test_health.py`):
-
-- `GET /health` returns `200` + `{"status": "ok"}`
-- `GET /search` without `q` returns `422`
-
-<!-- TODO: add tests for activity CRUD, upload validation, and the vision fallback -->
-
----
-
-## Example Requests
-
-### Create an activity event
-
-```bash
-curl -X POST http://localhost:8000/activity \
-  -H "Content-Type: application/json" \
-  -d '{
-    "session_id": "3f2a9b1e-5f1a-4c9d-8b3a-1234567890ab",
-    "url": "https://github.com/anomalyco/opencode",
-    "page_title": "opencode: An open-source coding agent",
-    "event_type": "url_change"
-  }'
-```
-
-### Upload a screenshot (queues the AI task)
-
-```bash
-curl -X POST "http://localhost:8000/upload?activity_id=<activity_id>" \
-  -F "file=@screenshot.jpg;type=image/jpeg"
-```
-
-### List recent activities
-
-```bash
-curl "http://localhost:8000/activities?limit=10&offset=0"
-```
-
-### Get activity detail (event + AI result + screenshot URL)
-
-```bash
-curl http://localhost:8000/activity/<activity_id>
-```
-
-### Search AI results
-
-```bash
-curl "http://localhost:8000/search?q=coding"
-```
-
-### Stats
-
-```bash
-curl http://localhost:8000/stats
-```
-
----
-
-## Example Responses
-
-**`POST /upload` → `200 UploadAck`**
-
-```json
-{
-  "activity_id": "b1d9c7a2-...",
-  "task_id": "e5f6a3c1-...",
-  "status": "queued"
-}
-```
-
-**`GET /activity/<id>` → `200`**
-
-```json
-{
-  "event": {
-    "id": "b1d9c7a2-...",
-    "session_id": "3f2a9b1e-...",
-    "timestamp": "2026-08-01T10:15:30.000Z",
-    "url": "https://github.com/anomalyco/opencode",
-    "page_title": "opencode: An open-source coding agent",
-    "event_type": "url_change"
-  },
-  "ai_result": {
-    "id": "c9e1f2b3-...",
-    "activity_id": "b1d9c7a2-...",
-    "activity": "coding",
-    "application": "GitHub",
-    "page_title": "opencode: An open-source coding agent",
-    "summary": "User is browsing the opencode repository documentation.",
-    "tags": ["github", "coding", "docs"],
-    "confidence": 0.94,
-    "source": "gemini",
-    "created_at": "2026-08-01T10:15:45.000Z"
-  },
-  "screenshot": "/storage/screenshots/5d8f2a1c-9b3e-4f6a-8c7d-0e1f2a3b4c5d.jpg"
-}
-```
-
-**`GET /search?q=coding` → `200`** (fallback source example)
-
-```json
-[
-  {
-    "id": "c9e1f2b3-...",
-    "activity_id": "b1d9c7a2-...",
-    "activity": "unknown",
-    "application": "",
-    "page_title": "",
-    "summary": "OCR fallback extracted text: FastAPI Swagger UI docs ...",
-    "tags": ["ocr-fallback"],
-    "confidence": 0.3,
-    "source": "paddleocr",
-    "created_at": "2026-08-01T10:15:45.000Z"
-  }
-]
-```
-
-**`GET /stats` → `200`**
-
-```json
-{
-  "total_events": 142,
-  "total_sessions": 3,
-  "top_activities": [
-    { "activity": "coding", "count": 61 },
-    { "activity": "reading", "count": 38 }
-  ],
-  "top_tags": []
-}
-```
-
----
-
-## Roadmap
-
-- [ ] **Authentication** — `JWT_SECRET` / `JWT_ALGORITHM` settings exist, but no auth middleware or login flow is implemented yet
-- [ ] **Session lifecycle** — `Session.end_time` is never written by the current pipeline
-- [ ] **Top tags statistics** — `/stats` currently returns an empty `top_tags` array
-- [ ] **Screenshot rendering** — the detail page shows the screenshot URL as text; embed it as an `<img>` for preview
-- [ ] **Screenshot deduplication** — SHA-256 hashes are stored but not yet used to skip duplicates
-- [ ] **Production frontend build** — the Docker `client` service runs the Vite dev server; a nginx/static-serve production image is pending
-- [ ] **Extended test suite** — only health/search endpoints are covered
-- [ ] **CI/CD** — no GitHub Actions workflow yet
-- [ ] **Sample screenshots & hero image** — add real product captures
-
----
-
-## Contributing
-
-Contributions are welcome!
-
-1. Fork the repository.
-2. Create a feature branch: `git checkout -b feat/my-feature`.
-3. Make your changes — keep the extension thin, put AI work in workers, and keep schemas in `server/app/schemas`.
-4. Run `pytest` for backend changes, `npm run typecheck` for extension changes, and `npm run build` for the client.
-5. Open a pull request with a clear description.
-
----
-
-## License
-
-<!-- TODO: License not yet chosen. MIT is the recommended default for open-source publication. -->
-
-This project does not currently include a `LICENSE` file. Until a license is added, all rights are reserved by the author.
-
----
-
-## Acknowledgements
-
-- **Google Gemini** — vision model powering semantic screenshot understanding
-- **PaddlePaddle / PaddleOCR** — offline OCR fallback
-- Built with FastAPI, Celery, Redis, PostgreSQL, React, Vite, Tailwind CSS, esbuild, and Docker
