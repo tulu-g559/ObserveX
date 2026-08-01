@@ -1,2 +1,80 @@
-server/venv
+# Environment
+.env
 server/.env
+server/venv/
+
+# Dependencies
+client/node_modules/
+extension/node_modules/
+
+# Build outputs
+dist/
+build/
+extension/build.mjs
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Python tooling caches
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.pytype/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.coverage.xml
+coverage.xml
+.hypothesis/
+.pip-deprecated-files/
+
+# JavaScript/TypeScript caches
+node_modules/
+.npm/
+.yarn/
+.pnpm-store/
+.eslintcache
+*.tsbuildinfo
+.next/
+.nuxt/
+.vite/
+.parcel-cache/
+
+# Test / coverage
+coverage/
+.nyc_output/
+jest-stare/
+playwright-report/
+test-results/
+
+# IDE / editor
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Extension build artifacts
+extension/background/
+extension/content/
+extension/popup/popup.js
+extension/popup/popup.js.map
+extension/options/options.js
+extension/options/options.js.map
+
+# Logs
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Storage / uploads
+storage/
