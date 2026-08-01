@@ -1,6 +1,11 @@
 <div align="center">
 
 # ObserveX: Real-time Visual AI Browser Agent
+
+<img src="https://github.com/user-attachments/assets/50de9ed7-6f84-443b-b108-4141f9961bc1"
+  alt="ObserveX Logo"
+  height="120"/>
+
 **Capture browser activity · Understand it with vision AI · Visualize your day**
 
 
@@ -59,7 +64,7 @@
 
 ---
 
-## ⦿About
+## ⦿ About
 
 **ObserveX** is a visual AI browser agent that runs entirely in your browser and on your own stack:
 
