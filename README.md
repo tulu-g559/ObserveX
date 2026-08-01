@@ -1,12 +1,13 @@
 <div align="center">
 
 # ObserveX: Real-time Visual AI Browser Agent
-
 <img src="https://github.com/user-attachments/assets/50de9ed7-6f84-443b-b108-4141f9961bc1"
   alt="ObserveX Logo"
   height="120"/>
 
 **Capture browser activity · Understand it with vision AI · Visualize your day**
+
+**(v0.1.0)**
 
 <!-- TODO: Replace with real product screenshot once UI is finalized -->
 
@@ -26,6 +27,7 @@
 <div align="center">
 
 **Chrome Extension → FastAPI → Redis/Celery → Vision API + OCR→ PostgreSQL → Dashboard**
+
 *Capture is instant. AI understanding happens async, in the background.*
 
 </div>
@@ -44,7 +46,7 @@
 
 The architecture is **event-driven and asynchronous**: the extension only captures and uploads; all AI processing happens in background workers.
 
-> ⚠️ **WIP** — this project is under active development. Anything not yet implemented is listed inline as TODO instead of being documented as existing.
+> ⚠️ **WIP:** this project is under active development. Anything not yet implemented is listed inline as TODO instead of being documented as existing.
 
 ---
 
