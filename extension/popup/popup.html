@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ObserveX</title>
+    <style>
+      body {
+        width: 260px;
+        font-family: -apple-system, "Segoe UI", sans-serif;
+        margin: 0;
+        padding: 16px;
+        background: #fffdf7;
+        color: #1a1a1a;
+      }
+      h1 {
+        font-size: 15px;
+        margin: 0 0 4px;
+      }
+      .tagline {
+        font-size: 11px;
+        color: #8a8a8a;
+        margin-bottom: 14px;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 10px;
+        font-size: 13px;
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 6px;
+      }
+      .dot.on {
+        background: #d4a017;
+      }
+      .dot.off {
+        background: #c4c4c4;
+      }
+      button {
+        width: 100%;
+        padding: 8px;
+        border: none;
+        border-radius: 8px;
+        background: #d4a017;
+        color: #fff;
+        font-weight: 600;
+        font-size: 13px;
+        cursor: pointer;
+      }
+      a {
+        color: #a3760f;
+        font-size: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ObserveX</h1>
+    <div class="tagline">Every tab tells a story.</div>
+    <div class="row"><span><span id="statusDot" class="dot off"></span>Status</span><span id="statusText">Off</span></div>
+    <div class="row"><span>Queued uploads</span><span id="queueCount">0</span></div>
+    <button id="toggleBtn">Toggle Tracking</button>
+    <p><a href="../options/options.html" target="_blank">Settings</a></p>
+    <script type="module" src="popup.js"></script>
+  </body>
+</html>

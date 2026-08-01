@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>ObserveX Settings</title>
+    <style>
+      body {
+        font-family: -apple-system, "Segoe UI", sans-serif;
+        max-width: 480px;
+        margin: 40px auto;
+        color: #1a1a1a;
+        background: #fffdf7;
+      }
+      h1 { font-size: 20px; }
+      label { display: block; margin: 16px 0 6px; font-size: 13px; font-weight: 600; }
+      input { width: 100%; padding: 8px; border-radius: 8px; border: 1px solid #e0ddd2; box-sizing: border-box; }
+      button { margin-top: 20px; padding: 10px 18px; background: #d4a017; color: #fff; border: none; border-radius: 8px; font-weight: 600; cursor: pointer; }
+      .saved { font-size: 12px; color: #6b8f4e; margin-left: 10px; }
+    </style>
+  </head>
+  <body>
+    <h1>ObserveX Settings</h1>
+    <label for="apiBaseUrl">API Base URL</label>
+    <input id="apiBaseUrl" type="text" />
+
+    <label for="captureInterval">Capture interval (seconds)</label>
+    <input id="captureInterval" type="number" min="15" />
+
+    <label for="jpegQuality">Screenshot quality (0.1 - 1.0)</label>
+    <input id="jpegQuality" type="number" min="0.1" max="1" step="0.1" />
+
+    <button id="saveBtn">Save</button>
+    <span id="savedLabel" class="saved" style="display:none;">Saved</span>
+
+    <script type="module" src="options.js"></script>
+  </body>
+</html>
