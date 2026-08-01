@@ -1,0 +1,70 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: observex
+      POSTGRES_PASSWORD: observex
+      POSTGRES_DB: observex
+    ports:
+      - "5432:5432"
+    volumes:
+      - observex_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U observex"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  server:
+    build: ./server
+    env_file: ./server/.env
+    environment:
+      DATABASE_URL: postgresql+psycopg://observex:observex@postgres:5432/observex
+      REDIS_URL: redis://redis:6379/0
+    ports:
+      - "8000:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - observex_screenshots:/app/storage
+
+  worker:
+    build: ./server
+    command: celery -A app.workers.celery_app worker --loglevel=info
+    env_file: ./server/.env
+    environment:
+      DATABASE_URL: postgresql+psycopg://observex:observex@postgres:5432/observex
+      REDIS_URL: redis://redis:6379/0
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - observex_screenshots:/app/storage
+
+  client:
+    build: ./client
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_BASE_URL: http://localhost:8000
+    depends_on:
+      - server
+
+volumes:
+  observex_pg_data:
+  observex_screenshots:
